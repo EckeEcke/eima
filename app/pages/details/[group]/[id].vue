@@ -1,6 +1,6 @@
 <template>
   <UContainer>
-    <div class="flex flex-row flex-wrap gap-16">
+    <div class="flex flex-row flex-wrap gap-16 mb-8">
       <DetailPageCard
           class="w-full sm:max-w-xs"
           :title="entry?.title"

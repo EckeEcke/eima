@@ -2,9 +2,9 @@
   <UCard class="w-full" variant="subtle" :ui="{ body: 'sm:px-4 sm:p-4', header: 'p-0 sm:p-0', footer: 'sm:px-4', }">
     <template #header>
       <div class="relative">
-        <NuxtLink :to="detailPageUrl" class="bg-black" :class="isDone ? 'opacity-50' : ''">
+        <div class="bg-black" :class="isDone ? 'opacity-50' : ''">
           <NuxtImg class="h-48 w-auto mx-auto" :src="image" />
-        </NuxtLink>
+        </div>
         <StarIcon v-if="!isDone" class="absolute top-1 right-1"/>
         <CheckIcon v-if="isDone" class="absolute top-1 right-1"/>
         <UBadge class="absolute bottom-1 right-1" color="neutral" variant="outline">
@@ -58,7 +58,7 @@
 <script setup lang="ts">
 import {useI18n} from "#imports";
 
-const props = defineProps({
+defineProps({
   title: String,
   image: String,
   creator: String,
@@ -70,7 +70,6 @@ const props = defineProps({
 
 const { d } = useI18n()
 
-const detailPageUrl = `/details/schwer-ausgelastete-erwachsene-${props.id}`
 const eventLink = 'https://action-arena.info/'
 </script>
 
