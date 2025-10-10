@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+:root {
+  /* Primary & Branding Colors */
+  --color-primary: #FF5757;   /* Bright Coral */
+  --color-text-dark: #2C2C54;  /* Deep Indigo */
+
+  /* Accent & Interactive Colors */
+  --color-accent: #FFD166;     /* Sunny Yellow */
+  --color-success: #06D6A0;    /* Soft Green */
+
+  /* Neutral Background & UI Colors */
+  --color-background: #F5F6FA; /* Pale Grey */
+  --color-text-light: #FFFFFF; /* Pure white for text on dark backgrounds */
+}
+
+.bg-primary {
+    background-color: var(--color-primary);
+}
