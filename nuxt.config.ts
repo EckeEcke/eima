@@ -16,5 +16,9 @@ export default defineNuxtConfig({
         ],
         defaultLocale: 'de',
         vueI18n: './i18n/i18n.config.ts',
+    },
+    // deactivate image optimization to allow external image urls
+    image: {
+        provider: 'none'
     }
 })
