@@ -3,10 +3,11 @@ export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
     devtools: { enabled: true },
     modules: [
-        '@nuxt/eslint',
-        '@nuxtjs/i18n',
-        '@nuxt/image',
-        '@nuxt/ui',
+      '@nuxt/eslint',
+      '@nuxtjs/i18n',
+      '@nuxt/image',
+      '@nuxt/ui',
+      '@pinia/nuxt'
     ],
     css: ['~/assets/css/main.css'],
     i18n: {

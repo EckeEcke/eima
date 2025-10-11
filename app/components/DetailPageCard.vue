@@ -2,11 +2,11 @@
   <UCard class="w-full" variant="subtle" :ui="{ body: 'sm:px-4 sm:p-4', header: 'p-0 sm:p-0', footer: 'sm:px-4', }">
     <template #header>
       <div class="relative">
-        <div class="bg-black" :class="isDone ? 'opacity-50' : ''">
-          <NuxtImg class="h-48 w-auto mx-auto" :src="image" />
+        <div class="bg-black" :class="eventObject.hasHappened ? 'opacity-50' : ''">
+          <NuxtImg class="h-48 w-auto mx-auto" :src="eventObject.image" />
         </div>
-        <StarIcon v-if="!isDone" class="absolute top-1 right-1"/>
-        <CheckIcon v-if="isDone" class="absolute top-1 right-1"/>
+        <StarIcon v-if="!eventObject.isDone" class="absolute top-1 right-1"/>
+        <CheckIcon v-if="eventObject.isDone" class="absolute top-1 right-1"/>
         <UBadge class="absolute bottom-1 right-1" color="neutral" variant="outline">
           <Icon name="pepicons-pop:persons"/>
           Öffentlich
@@ -18,14 +18,14 @@
 
     <Placeholder class="h-8" />
     <div class="flex items-center gap-2 w-full mb-4">
-      <UAvatar :src="avatarImg" />
-      <span class="text-xs">{{ creator }}</span>
+      <UAvatar :src="eventObject.avatarImg" />
+      <span class="text-xs">{{ eventObject.creator }}</span>
     </div>
-    <h3 class="font-semibold mb-4">{{ title }}</h3>
+    <h3 class="font-semibold mb-4">{{ eventObject.title }}</h3>
     <div class="grid grid-cols-1 gap-2">
-      <div class="text-sm"><span class="font-semibold">Vorgeschlagener Termin:</span> {{ proposedDate ? d(proposedDate) : 'TBD' }}</div>
-      <div class="text-sm"><span class="font-semibold">Preis:</span> 40€</div>
-      <div class="text-sm"><span class="font-semibold">Mehr Infos:</span> <ULink :to="eventLink" target="_blank">LINK</ULink></div>
+      <div class="text-sm"><span class="font-semibold">Vorgeschlagener Termin:</span> {{ eventObject.proposedDate ? d(eventObject.proposedDate) : 'TBD' }}</div>
+      <div v-if="eventObject.price" class="text-sm"><span class="font-semibold">Preis: </span>{{ eventObject.price }}</div>
+      <div v-if="eventObject.link" class="text-sm"><span class="font-semibold">Mehr Infos:</span> <ULink :to="eventObject.link" target="_blank">LINK</ULink></div>
       <div class="text-sm flex flex-col gap-2 mb-2">
         <div class="font-semibold">Interessiert:</div>
 
@@ -42,9 +42,9 @@
           <UAvatar src="https://github.com/noook.png" alt="Neil Richter" />
         </UAvatarGroup>
       </div>
-      <div class="description rounded-lg text-sm">Hi, ich habe Lust, mal wieder in die Action Arena zu gehen. Lasertag, Arcade Games und Schwarzlichtminigolf.</div>
+      <div v-if="eventObject.description" class="description rounded-lg text-sm">{{ eventObject.description }}</div>
     </div>
-    <template #footer v-if="isDone">
+    <template #footer v-if="eventObject.hasHappened">
       <Placeholder class="h-8" />
       <div class="flex justify-end">
         <div class="text-sm">
@@ -56,21 +56,17 @@
 </template>
 
 <script setup lang="ts">
-import {useI18n} from "#imports";
+import { useI18n } from "#imports"
 
 defineProps({
-  title: String,
-  image: String,
-  creator: String,
-  avatarImg: String,
-  proposedDate: String,
-  isDone: Boolean,
-  id: Number,
+  eventObject: {
+    type: Object as PropType<EventObject>,
+    required: true,
+  }
 })
 
 const { d } = useI18n()
 
-const eventLink = 'https://action-arena.info/'
 </script>
 
 <style scoped>
