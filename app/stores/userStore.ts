@@ -23,5 +23,6 @@ const mockedUser: User = {
 export const useUserStore = defineStore('userStore', {
     state: () => ({
         user: mockedUser,
+        isLoggedIn: false,
     }),
 })

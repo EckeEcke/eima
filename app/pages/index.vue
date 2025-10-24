@@ -1,5 +1,6 @@
 <template>
-  <UContainer>
+  <welcome v-if="!isLoggedIn"></welcome>
+  <UContainer v-else>
     <div class="mb-32">
       <h2 v-if="value === 'Meine Bucketlist'" class="font-semibold text-2xl mb-8">
         {{ value }}
@@ -45,7 +46,10 @@
 </template>
 
 <script setup lang="ts">
-import Disturber from "~/components/Disturber.vue";
+
+const userStore = useUserStore()
+
+const isLoggedIn = computed(() => userStore.isLoggedIn)
 
 const groups = computed(() => {
   const allGroups = entries.value.flatMap(event => event.groups)
