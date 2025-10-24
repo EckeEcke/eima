@@ -16,24 +16,32 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from '@nuxt/ui'
 
-const items = computed<NavigationMenuItem[]>(() => [{
-  label: 'Home',
-  to: '/',
-  icon: 'i-lucide-house',
-}, {
-  label: 'Event erstellen',
-  to: '/new',
-  icon: 'i-lucide-image-plus',
-}, {
-  label: 'Gruppe erstellen',
-  icon: 'i-lucide-user-plus',
-  to: '/new-group',
-}, {
-  label: 'Meine Website',
-  icon: 'i-lucide-rocket',
-  to: 'https://eckeecke.github.io',
-  target: '_blank'
-}])
+const items = computed<NavigationMenuItem[]>(() => [
+  {
+    label: 'Home',
+    to: '/',
+    icon: 'i-lucide-house',
+  }, {
+    label: 'Neues Event',
+    to: '/new',
+    icon: 'i-lucide-image-plus',
+  }, {
+    label: 'Neue Gruppe',
+    icon: 'i-lucide-user-plus',
+    to: '/new-group',
+  },
+  {
+    label: 'About',
+    icon: 'i-lucide-info',
+    to: '/about',
+  },
+  {
+    label: 'Meine Website',
+    icon: 'i-lucide-rocket',
+    to: 'https://eckeecke.github.io',
+    target: '_blank'
+  }
+])
 </script>
 
 <style>
