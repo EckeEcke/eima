@@ -14,7 +14,7 @@
           color="success"
           variant="ghost"
           icon="i-lucide-user-check"
-          @click="userStore.isLoggedIn = false"
+          @click="logout"
       />
       <UButton
           v-else
@@ -64,6 +64,11 @@ const items: NavigationMenuItem[] = [
 ]
 
 const isLoggedIn = computed(() => userStore.isLoggedIn)
+
+const logout = () => {
+  userStore.isLoggedIn = false
+  navigateTo('/')
+}
 
 const itemsToDisplay = computed<NavigationMenuItem[]>(() =>
   items.filter(item => {
