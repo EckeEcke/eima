@@ -1,12 +1,8 @@
 <template>
   <UContainer>
-    <h2 class="text-2xl font-semibold mb-8">Willkommen bei eima - die social event planning app</h2>
-    <p>
-      Melde dich jetzt an, um mit deinem Freundeskreis oder für dich selbst Eventideen zu sammeln und zu planen.
-    </p>
-    <UButton size="lg" type="submit" icon="i-lucide-rocket" class="my-8 px-4" @click="userStore.isLoggedIn = true">
-      Jetzt anmelden
-    </UButton>
+    <Login v-if="showLogin" @switch-view="showLogin = !showLogin" />
+    <Signup v-else @switch-view="showLogin = !showLogin" />
+    <h2 class="text-2xl font-semibold my-16">Willkommen bei eima - die social event planning app</h2>
     <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-24 my-16">
       <div class="lg:w-1/2 lg:pr-4">
         <h3 class="text-lg font-semibold mb-4">Bucketlist</h3>
@@ -32,5 +28,8 @@
 </template>
 
 <script setup lang="ts">
-const userStore = useUserStore()
+import Signup from '~/components/Signup.vue'
+import Login from '~/components/Login.vue'
+
+const showLogin = ref(false)
 </script>
