@@ -5,6 +5,7 @@
   /* Primary & Branding Colors */
   --color-primary: #FF5757;   /* Bright Coral */
   --color-text-dark: #2C2C54;  /* Deep Indigo */
+  --ui-primary: var(--color-primary);
 
   /* Accent & Interactive Colors */
   --color-accent: #FFD166;     /* Sunny Yellow */
@@ -17,4 +18,8 @@
 
 .bg-primary {
     background-color: var(--color-primary);
+}
+
+button, [role="button"] {
+    cursor: pointer;
 }

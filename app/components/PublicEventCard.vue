@@ -27,7 +27,7 @@
     <template #footer>
       <Placeholder class="h-8" />
       <div class="flex justify-end">
-        <UButton v-if="!eventObject.hasHappened">Termin finden</UButton>
+        <UButton v-if="!eventObject.hasHappened" type="button">Termin finden</UButton>
         <div v-if="eventObject.hasHappened" class="text-sm">
           Dieses Event hat bereits stattgefunden. Warst du dabei? Dann klicke auf "<Icon name="mingcute:check-2-fill" />", um es von deiner Bucketlist zu streichen.
         </div>
