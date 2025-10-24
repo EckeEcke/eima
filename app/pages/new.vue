@@ -54,10 +54,13 @@
 <script setup lang="ts">
 import { object, string, minLength, optional, pipe, url, union, literal } from 'valibot'
 import type {SelectMenuItem} from '#ui/components/SelectMenu.vue'
-import PreviewCard from "~/components/PreviewCard.vue";
+import PreviewCard from '~/components/PreviewCard.vue'
+import { Categories } from '~~/types/categories'
 
 const userStore = useUserStore()
 const eventStore = useEventStore()
+
+const { t } = useI18n()
 
 const state = reactive({
   title: '',
@@ -66,7 +69,7 @@ const state = reactive({
   image: '',
   price: undefined,
   groups: [],
-  category: '',
+  category: undefined,
 })
 
 const eventSchema = object({
@@ -84,28 +87,12 @@ const eventSchema = object({
 })
 
 const groups = computed(() => userStore.user.groups)
-const categories:SelectMenuItem[] = [
-    {
-      label: 'Restaurant',
-      id: 'restaurant',
-    },
-  {
-    label: 'Aktivität',
-    id: 'activity',
-  },
-  {
-    label: 'Sightseeing',
-    id: 'sightseeing',
-  },
-  {
-    label: 'Adventure',
-    id: 'adventure',
-  },
-  {
-    label: 'Experience',
-    id: 'experience',
+const categories: SelectMenuItem[] = Object.values(Categories).map(category => {
+  return {
+    label: t(`categories.${category}`),
+    id: category,
   }
-]
+})
 
 const submitEvent = () => {
   eventStore.events.push(

@@ -1,3 +1,5 @@
+import type { Category } from '~~/types/categories'
+
 export type EventObject = {
     title: string,
     image: string,
@@ -11,7 +13,7 @@ export type EventObject = {
     price?: string,
     hasHappened: boolean,
     dateIsSet?: boolean,
-    category?: string,
+    category?: Category,
     link?: string,
 }
 

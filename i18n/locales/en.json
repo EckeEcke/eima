@@ -1,0 +1,9 @@
+{
+  "categories": {
+    "restaurant": "Restaurant",
+    "activity": "Activity",
+    "sightseeing": "Sightseeing",
+    "adventure": "Adventure",
+    "experience": "Experience"
+  }
+}
