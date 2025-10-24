@@ -123,9 +123,22 @@ const submitEvent = () => {
 
       }
   )
+  showToast()
+  navigateTo('/')
 }
 
 const isPublic = computed(() => state.groups.length > 0)
+
+const toast = useToast()
+
+const showToast = () => {
+  toast.add({
+    title: `Dein Event "${state.title}" wurde erstellt!`,
+    description: 'Plan doch direkt ein Datum!',
+    color: 'success',
+    icon: 'streamline-ultimate-color:check',
+  })
+}
 </script>
 
 <style>

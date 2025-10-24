@@ -15,7 +15,7 @@ const toggleLike = () => {
 
 const toast = useToast()
 
-function showToast() {
+const showToast = () => {
   toast.add({
     title: 'Super, du zeigst jetzt dein Interesse an!',
     description: 'Der erste Schritt ist getan. Fehlt nur noch ein Termin und ihr könnt "EventName" in euren eima packen.',

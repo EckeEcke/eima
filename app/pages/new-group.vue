@@ -43,6 +43,19 @@ const groups = computed(() => userStore.user.groups)
 const submitGroup = () => {
   if (userStore.user.groups) userStore.user.groups.push(state.groupName)
   else userStore.user.groups = [state.groupName]
+  showToast()
+  navigateTo('/')
+}
+
+const toast = useToast()
+
+const showToast = () => {
+  toast.add({
+    title: `Deine neue Gruppe "${state.groupName}" wurde erstellt!`,
+    description: 'Warum fügst du nicht direkt deinen Freundeskreis und euer nächstes Event zur Gruppe hinzu?',
+    color: 'success',
+    icon: 'streamline-ultimate-color:check',
+  })
 }
 
 </script>

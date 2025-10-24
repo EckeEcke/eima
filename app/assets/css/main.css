@@ -16,10 +16,6 @@
   --color-text-light: #FFFFFF; /* Pure white for text on dark backgrounds */
 }
 
-.bg-primary {
-    background-color: var(--color-primary);
-}
-
 button, [role="button"] {
     cursor: pointer;
 }
