@@ -1,5 +1,5 @@
 <template>
-  <UFooter>
+  <UFooter class="mt-16 lg:mt-32">
     <template #left>
       <p class="text-muted text-sm">Copyright © {{ new Date().getFullYear() }}</p>
     </template>

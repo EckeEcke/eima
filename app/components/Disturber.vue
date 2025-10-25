@@ -11,7 +11,7 @@
         <UButton to="/new" size="xl">Erstelle jetzt dein Event</UButton>
       </div>
     </div>
-    <NuxtImg src="/images/illustration-party.svg" class="w-64 mx-auto p-8" />
+    <NuxtImg src="/images/illustration-party.svg" class="w-64 mx-auto p-8 hidden lg:block" />
   </div>
 </template>
 

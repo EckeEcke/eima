@@ -28,7 +28,7 @@
       </div>
     </div>
     <Disturber v-if="openEvents.length > 0" />
-    <div v-if="doneEvents.length > 0" class="mb-32">
+    <div v-if="doneEvents.length > 0">
       <h2 v-if="value === 'Meine Bucketlist'" class="font-semibold text-2xl mb-8">
         Meine abgeschlossenen Events
       </h2>
