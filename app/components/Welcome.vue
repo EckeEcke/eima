@@ -1,7 +1,6 @@
 <template>
   <UContainer>
-    <Login v-if="showLogin" @switch-view="showLogin = !showLogin" />
-    <Signup v-else @switch-view="showLogin = !showLogin" />
+    <Login />
     <h2 class="text-2xl font-semibold my-16">Willkommen bei eima - die social event planning app</h2>
     <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-24 my-16">
       <div class="lg:w-1/2 lg:pr-4">
@@ -26,10 +25,3 @@
     </div>
   </UContainer>
 </template>
-
-<script setup lang="ts">
-import Signup from '~/components/Signup.vue'
-import Login from '~/components/Login.vue'
-
-const showLogin = ref(false)
-</script>
