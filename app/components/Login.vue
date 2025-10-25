@@ -52,7 +52,7 @@ const items = [
   },
   {
     label: 'Signup',
-    icon: 'i-lucide-lock',
+    icon: 'i-lucide-user-plus',
     slot: 'signup',
     value: 'signup'
   }
