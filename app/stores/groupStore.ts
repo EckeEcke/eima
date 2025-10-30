@@ -1,5 +1,5 @@
 import { mockedUser } from './userStore'
-import type {InputMenuItem} from '#ui/components/InputMenu.vue'
+import type { InputMenuItem } from '#ui/components/InputMenu.vue'
 
 type GroupMember = {
     userId: string,

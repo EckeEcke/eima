@@ -10,7 +10,7 @@
       </h2>
       <div>
         <div class="mb-8">
-          <UInputMenu v-model="selectedGroup" :items="groups" value-key="id" :key="groups.length" />
+          <USelect v-model="selectedGroup" :items="groups" value-key="id" :key="groups.length" />
         </div>
       </div>
       <div v-if="openEvents.length > 0" class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
