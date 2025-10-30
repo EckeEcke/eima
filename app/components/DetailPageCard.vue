@@ -1,5 +1,5 @@
 <template>
-  <UCard class="w-full" variant="subtle" :ui="{ body: 'sm:px-4 sm:p-4', header: 'p-0 sm:p-0', footer: 'sm:px-4', }">
+  <UCard class="w-full max-w-sm" variant="subtle" :ui="{ body: 'sm:px-4 sm:p-4', header: 'p-0 sm:p-0', footer: 'sm:px-4', }">
     <template #header>
       <div class="relative">
         <div class="bg-black" :class="eventObject.hasHappened ? 'opacity-50' : ''">
