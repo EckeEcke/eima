@@ -51,6 +51,12 @@ const items: NavigationMenuItem[] = [
     requiresLogin: true,
   },
   {
+    label: 'Mein Account',
+    icon: 'i-lucide-user',
+    to: '/my-account',
+    requiresLogin: true,
+  },
+  {
     label: 'About',
     icon: 'i-lucide-info',
     to: '/about',

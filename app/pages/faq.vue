@@ -6,7 +6,7 @@
       </h2>
       <UAccordion :items="items" />
     </div>
-    <NuxtImg src="/images/illustration-group.svg" class="mx-auto p-8" />
+    <NuxtImg src="/images/illustration-faq.svg" class="mx-auto p-8" />
   </UContainer>
 </template>
 <script setup lang="ts">
