@@ -19,7 +19,7 @@
     <Placeholder class="h-8" />
     <div class="flex items-center gap-2 w-full mb-4">
       <UAvatar :src="eventObject.avatarImg" />
-      <span class="text-xs">{{ eventObject.creator }}</span>
+      <span class="text-xs">{{ eventObject.creator.name }}</span>
     </div>
     <h3 class="font-semibold">{{ eventObject.title }}</h3>
     <div class="text-sm">Vorgeschlagener Termin: {{ eventObject.proposedDate ? d(eventObject.proposedDate) : 'TBD' }}</div>
@@ -27,7 +27,7 @@
     <template #footer>
       <Placeholder class="h-8" />
       <div class="flex justify-end">
-        <UButton v-if="!eventObject.hasHappened" type="button">Termin finden</UButton>
+        <UButton v-if="!eventObject.hasHappened" :to="detailPageUrl" icon="i-lucide-calendar" type="button">Termin finden</UButton>
         <div v-if="eventObject.hasHappened" class="text-sm">
           Dieses Event hat bereits stattgefunden. Warst du dabei? Dann klicke auf "<Icon name="mingcute:check-2-fill" />", um es von deiner Bucketlist zu streichen.
         </div>
@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import {useI18n} from "#imports"
+import { useI18n } from '#imports'
 import type { EventObject } from '~/stores/eventStore'
 
 const props = defineProps({

@@ -9,12 +9,12 @@ export type User = {
     xp: number,
 }
 
-const mockedUser: User = {
+export const mockedUser: User = {
     userId: '1223545',
     name: 'Gargamel',
     avatarImg: 'https://pbs.twimg.com/profile_images/1564577680678338561/E4AsnlXd_400x400.jpg',
     interestedEvents: ['1', '2'],
-    groups: ['Schwer ausgelastete Erwachsene', 'Neu in Hamburg'],
+    groups: ['1', '2', '3'],
     createdEvents: ['3', '4'],
     completedEvents: ['6'],
     xp: 0,

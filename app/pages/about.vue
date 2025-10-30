@@ -14,5 +14,3 @@
     <NuxtImg src="/images/illustration-group.svg" class="mx-auto p-8" />
   </UContainer>
 </template>
-<script setup lang="ts">
-</script>

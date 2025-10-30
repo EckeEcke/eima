@@ -56,10 +56,9 @@ const items: NavigationMenuItem[] = [
     to: '/about',
   },
   {
-    label: 'Portfolio',
-    icon: 'i-lucide-rocket',
-    to: 'https://eckeecke.github.io',
-    target: '_blank'
+    label: 'FAQ',
+    icon: 'i-lucide-circle-question-mark',
+    to: '/faq',
   }
 ]
 

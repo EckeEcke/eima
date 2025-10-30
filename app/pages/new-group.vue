@@ -24,6 +24,7 @@
 import { object, string, minLength, pipe, custom } from 'valibot'
 
 const userStore = useUserStore()
+const groupStore = useGroupStore()
 
 const state = reactive({
   groupName: ''
@@ -43,6 +44,14 @@ const groups = computed(() => userStore.user.groups)
 const submitGroup = () => {
   if (userStore.user.groups) userStore.user.groups.push(state.groupName)
   else userStore.user.groups = [state.groupName]
+  const groupObject = {
+    name: state.groupName,
+    id: Math.random().toString(),
+    creator: userStore.user,
+    members: []
+  }
+  if (groupStore.groups) groupStore.groups.push(groupObject)
+  else groupStore.groups = [groupObject]
   showToast()
   navigateTo('/')
 }

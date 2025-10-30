@@ -39,6 +39,10 @@ const items: NavigationMenuItem[] = [
   {
     label: 'About',
     to: '/about',
+  },
+  {
+    label: 'FAQ',
+    to: '/faq',
   }
 ]
 </script>

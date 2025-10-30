@@ -24,7 +24,7 @@
         </UFormField>
 
         <UFormField label="Gruppen auswählen" name="groups" class="multiple-select">
-          <USelect v-if="groups" v-model="state.groups" multiple :items="groups" placeholder="Gruppen auswählen" />
+          <USelect v-if="groups" v-model="state.groups" value-key="id" multiple :items="groups" placeholder="Gruppen auswählen" />
         </UFormField>
 
         <UFormField label="Kategorie wählen" name="category" class="multiple-select" required>
@@ -59,6 +59,7 @@ import { Categories } from '~~/types/categories'
 
 const userStore = useUserStore()
 const eventStore = useEventStore()
+const groupStore = useGroupStore()
 
 const { t } = useI18n()
 
@@ -86,7 +87,7 @@ const eventSchema = object({
   category: pipe(string(), minLength(3, 'Eine Kategorie wird benötigt.')),
 })
 
-const groups = computed(() => userStore.user.groups)
+const groups = computed(() => groupStore.getGroupsAsInputMenuItems)
 const categories: SelectMenuItem[] = Object.values(Categories).map(category => {
   return {
     label: t(`categories.${category}`),
@@ -99,10 +100,13 @@ const submitEvent = () => {
       {
         title: state.title,
         image: state.image,
-        creator: userStore.user.name,
+        creator: {
+          name: userStore.user.name,
+          id: userStore.user.userId,
+        },
         avatarImg: userStore.user.avatarImg,
         createdAt: new Date().toISOString(),
-        id: '2',
+        id: Math.random().toString(),
         groups: state.groups,
         price: state.price,
         hasHappened: false,

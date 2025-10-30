@@ -15,7 +15,7 @@
           <UCalendar v-model="suggestedDates" size="lg" :multiple="true" :readonly="true" />
         </div>
         <UModal>
-          <UButton label="Termine vorschlagen" color="primary" size="lg" variant="solid" />
+          <UButton label="Termine vorschlagen" color="primary" size="lg" variant="solid" icon="i-lucide-calendar" />
           <template #title>
             Wähle deine Wunschtermine
           </template>
@@ -24,7 +24,7 @@
           </template>
           <template #footer="{ close }">
             <div class="flex gap-4 justify-end w-full">
-              <UButton label="Abbrechen" color="subtle" variant="solid" @click="close" />
+              <UButton label="Abbrechen" color="neutral" variant="solid" @click="close" />
               <UButton label="Termine bestätigen" color="primary" variant="solid" />
             </div>
           </template>

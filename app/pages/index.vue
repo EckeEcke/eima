@@ -2,15 +2,15 @@
   <welcome v-if="!isLoggedIn"></welcome>
   <UContainer v-else>
     <div class="mb-32">
-      <h2 v-if="value === 'Meine Bucketlist'" class="font-semibold text-2xl mb-8">
-        {{ value }}
+      <h2 v-if="selectedGroup === '0'" class="font-semibold text-2xl mb-8">
+        {{ selectedGroupData.name }}
       </h2>
       <h2 v-else class="font-semibold text-2xl mb-8">
-        Offene Events in der Gruppe <i>"{{ value }}"</i>
+        Offene Events in der Gruppe <i>"{{ selectedGroupData.name }}"</i>
       </h2>
       <div>
         <div class="mb-8">
-          <UInputMenu v-model="value" :items="groups"/>
+          <UInputMenu v-model="selectedGroup" :items="groups" value-key="id" :key="groups.length" />
         </div>
       </div>
       <div v-if="openEvents.length > 0" class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -26,14 +26,24 @@
         </div>
         <NuxtImg src="/images/illustration-festivities.svg" class="w-64 mx-auto p-8" />
       </div>
+      <div v-if="selectedGroup !== '0'" class="flex justify-end my-16">
+        <UButton
+            v-if="selectedGroupData?.creator?.userId === user.userId"
+            variant="subtle"
+            color="neutral"
+            label="Gruppe löschen"
+            @click="deleteGroup"
+        />
+        <UButton v-else variant="subtle" color="neutral" label="Gruppe verlassen" />
+      </div>
     </div>
     <Disturber v-if="openEvents.length > 0" />
     <div v-if="doneEvents.length > 0">
-      <h2 v-if="value === 'Meine Bucketlist'" class="font-semibold text-2xl mb-8">
+      <h2 v-if="selectedGroup === '0'" class="font-semibold text-2xl mb-8">
         Meine abgeschlossenen Events
       </h2>
       <h2 v-else class="font-semibold text-2xl mb-8">
-        Vergangene Events in der Gruppe <i>"{{ value }}"</i>
+        Vergangene Events in der Gruppe <i>"{{ selectedGroup }}"</i>
       </h2>
       <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <PublicEventCard
@@ -48,27 +58,27 @@
 <script setup lang="ts">
 
 const userStore = useUserStore()
+const groupStore = useGroupStore()
+const eventStore = useEventStore()
 
 const isLoggedIn = computed(() => userStore.isLoggedIn)
 
-const groups = computed(() => {
-  const allGroups = entries.value.flatMap(event => event.groups)
-  return ['Meine Bucketlist', ...new Set(allGroups)]
-})
+const user = computed(() => userStore.user)
 
-const value = ref('Meine Bucketlist')
+const groups = computed(() => groupStore.getGroupsAsInputMenuItems)
 
-const eventStore = useEventStore()
+const { selectedGroup } = toRefs(groupStore)
 
-const entries = computed(() => eventStore.events)
+const selectedGroupData = computed(() => groupStore.getSelectedGroupData)
 
-const displayedEntries = computed(() => {
-  if (value.value === 'Meine Bucketlist') {
-    return [...eventStore.events].filter(event => !event.groups || event.groups.length === 0)
-  }
-  return [...eventStore.events].filter(event => event.groups.includes(value.value))
-})
+const displayedEntries = computed(() => eventStore.getEventsForSelectedGroup)
 
 const openEvents = computed(() => [...displayedEntries.value].filter(entry => !entry.hasHappened))
 const doneEvents = computed(() => [...displayedEntries.value].filter(entry => entry.hasHappened))
+
+const deleteGroup = () => {
+  const groupNameToDelete = selectedGroup.value
+  confirm(`Möchtest du die Gruppe "${groupNameToDelete}" wirklich löschen?`)
+  groupStore.deleteGroupByName(groupNameToDelete)
+}
 </script>
