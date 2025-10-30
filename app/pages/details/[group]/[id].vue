@@ -7,7 +7,7 @@
             :eventObject="entry!"
         />
       </div>
-      <div class="w-full">
+      <div class="w-full sm:w-auto">
         <h2 class="text-lg font-semibold mb-4">
           Bereits vorgeschlagene Termine
         </h2>
