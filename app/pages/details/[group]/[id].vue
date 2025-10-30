@@ -1,7 +1,7 @@
 <template>
   <UContainer>
     <div class="flex flex-row flex-wrap gap-16 mb-8">
-      <div class="w-full xs:w-auto">
+      <div class="w-full sm:w-auto">
         <DetailPageCard
             class="w-full sm:max-w-xs"
             :eventObject="entry!"
