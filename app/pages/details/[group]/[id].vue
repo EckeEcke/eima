@@ -7,11 +7,11 @@
             :eventObject="entry!"
         />
       </div>
-      <div>
+      <div class="w-full">
         <h2 class="text-lg font-semibold mb-4">
           Bereits vorgeschlagene Termine
         </h2>
-        <div v-if="suggestedDates" class="w-80 mb-8">
+        <div v-if="suggestedDates" class="w-80 mb-8 max-w-full">
           <UCalendar v-model="suggestedDates" size="lg" :multiple="true" :readonly="true" />
         </div>
         <UModal>

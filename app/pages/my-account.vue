@@ -35,7 +35,7 @@
     <USeparator class="my-16"/>
     <h2 class="text-2xl font-semibold my-8">Meine Trophäen</h2>
     <UCard variant="subtle">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-16 items-start">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-16 items-start py-2">
         <div v-for="trophy in trophies" class="flex items-center justify-center flex-col gap-4">
           <div class="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center" :class="trophy.completed ? 'bg-primary' : 'bg-gray-500 opacity-30'">
             <UIcon name="i-lucide-trophy" class="size-6 text-white"></UIcon>
@@ -86,7 +86,7 @@ const trophies = [
     completed: false,
   },
   {
-    label: 'Trete das 1. Mal einer Gruppe bei,',
+    label: 'Trete das 1. Mal einer Gruppe bei',
     id: 'first_group_join',
     completed: false,
   },
