@@ -43,7 +43,7 @@
         Meine abgeschlossenen Events
       </h2>
       <h2 v-else class="font-semibold text-2xl mb-8">
-        Vergangene Events in der Gruppe <i>"{{ selectedGroup }}"</i>
+        Vergangene Events in der Gruppe <i>"{{ selectedGroupData.name }}"</i>
       </h2>
       <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <PublicEventCard
