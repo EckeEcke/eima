@@ -24,7 +24,7 @@
           </template>
           <template #footer="{ close }">
             <div class="flex gap-4 justify-end w-full">
-              <UButton label="Abbrechen" color="neutral" variant="solid" @click="close" />
+              <UButton label="Abbrechen" color="neutral" variant="subtle" @click="close" />
               <UButton label="Termine bestätigen" color="primary" variant="solid" />
             </div>
           </template>
