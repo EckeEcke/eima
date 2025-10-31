@@ -154,5 +154,17 @@ export const useEventStore = defineStore('eventStore', {
             if (filteredEvents) return filteredEvents
             return state.events
         }
+    },
+    actions: {
+        updateEvent(eventId: string, updatedData: EventObject) {
+            this.events = this.events.map(event => {
+                if (event.id !== eventId) {
+                    return event
+                } return updatedData
+            })
+        },
+        deleteEvent(eventId: string) {
+            this.events = this.events.filter(event => event.id !== eventId)
+        }
     }
 })

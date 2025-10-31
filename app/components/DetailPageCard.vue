@@ -11,7 +11,7 @@
           <Icon name="pepicons-pop:persons"/>
           Öffentlich
         </UBadge>
-        <UModal>
+        <UModal v-model:open="modalIsOpen">
           <UButton color="neutral" size="sm" variant="subtle" icon="i-lucide-edit" class="absolute top-1 left-1" />
           <template #title>
             Bearbeite dein Event
@@ -19,7 +19,7 @@
           <template #body>
             <div>
               <div>
-                <UForm :schema="eventSchema" :state="state" class="space-y-4 new-event-form mb-16" @submit="submitEvent">
+                <UForm :schema="eventSchema" :state="state" class="space-y-4 new-event-form mb-16" @submit="updateEvent">
                   <UFormField label="Event Titel" name="title" class="form-field" required>
                     <UInput v-model="state.title" maxLength="50" />
                   </UFormField>
@@ -62,7 +62,7 @@
           <template #footer="{ close }">
             <div class="flex gap-4 justify-end w-full">
               <UButton label="Abbrechen" color="neutral" variant="subtle" @click="close" />
-              <UButton label="Änderungen speichern" color="primary" variant="solid" />
+              <UButton type="submit" label="Änderungen speichern" color="primary" variant="solid" @click="updateEvent" />
             </div>
           </template>
         </UModal>
@@ -115,7 +115,7 @@
 import { useI18n } from "#imports"
 import PreviewCard from '~/components/PreviewCard.vue'
 import { object, string, minLength, optional, pipe, url, union, literal } from 'valibot'
-import type {SelectMenuItem} from '#ui/components/SelectMenu.vue'
+import type { SelectMenuItem } from '#ui/components/SelectMenu.vue'
 import { Categories } from '~~/types/categories'
 
 const props = defineProps({
@@ -154,6 +154,8 @@ const eventSchema = object({
   category: pipe(string(), minLength(3, 'Eine Kategorie wird benötigt.')),
 })
 
+const modalIsOpen = ref(false)
+
 const groups = computed(() => userStore.user.groups)
 const categories: SelectMenuItem[] = Object.values(Categories).map(category => {
   return {
@@ -162,37 +164,38 @@ const categories: SelectMenuItem[] = Object.values(Categories).map(category => {
   }
 })
 
-const submitEvent = () => {
-  eventStore.events.push(
-      {
-        title: state.title,
-        image: state.image,
-        creator: {
-          name: userStore.user.name,
-          id: userStore.user.userId,
-        },
-        avatarImg: userStore.user.avatarImg,
-        createdAt: new Date().toISOString(),
-        id: '2',
-        groups: state.groups,
-        price: state.price,
-        hasHappened: false,
-        category: state.category,
+const updateEvent = () => {
+  const updatedEvent =  {
+          title: state.title,
+          image: state.image,
+          creator: {
+            name: userStore.user.name,
+            id: userStore.user.userId,
+          },
+          avatarImg: userStore.user.avatarImg,
+          createdAt: props.eventObject.createdAt,
+          id: props.eventObject.id,
+          groups: state.groups,
+          price: state.price,
+          hasHappened: false,
+          category: state.category,
+          proposedDate: props.eventObject.proposedDate,
+          description: state.description,
+          dateIsSet: props.eventObject.dateIsSet,
+          link: state.link,
+  }
 
-      }
-  )
+  eventStore.updateEvent(props.eventObject.id, updatedEvent)
+  modalIsOpen.value = false
   showToast()
-  navigateTo('/')
 }
-
-const isPublic = computed(() => state.groups.length > 0)
 
 const toast = useToast()
 
 const showToast = () => {
   toast.add({
-    title: `Dein Event "${state.title}" wurde erstellt!`,
-    description: 'Plan doch direkt ein Datum!',
+    title: `Dein Event "${state.title}" wurde angepasst!`,
+    description: 'Du kannst jederzeit weitere Änderungen vornehmen!',
     color: 'success',
     icon: 'streamline-ultimate-color:check',
   })
@@ -208,14 +211,12 @@ const showToastDeletedEvent = () => {
 }
 
 const deleteEvent = () => {
-  confirm(`Möchtest du das Event "${state.title}" wirklich löschen?`)
-  const indexToDelete = eventStore.events.findIndex(entry => entry.id === props.eventObject.id)
-
-  if (indexToDelete !== -1) {
-    eventStore.events.splice(indexToDelete, 1)
-  }
-  showToastDeletedEvent()
+  const idToDelete = props.eventObject.id
+  const wantsToDeleteEvent = confirm(`Möchtest du das Event "${state.title}" wirklich löschen?`)
+  if (!wantsToDeleteEvent) return
   navigateTo('/')
+  eventStore.deleteEvent(idToDelete)
+  showToastDeletedEvent()
 }
 
 </script>

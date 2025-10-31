@@ -1,10 +1,10 @@
 <template>
-  <UContainer>
+  <UContainer v-if="entry">
     <div class="flex flex-row flex-wrap gap-16 mb-8">
       <div class="w-full sm:w-auto">
         <DetailPageCard
             class="w-full sm:max-w-xs"
-            :eventObject="entry!"
+            :eventObject="entry"
         />
       </div>
       <div class="w-full sm:w-auto">
@@ -52,5 +52,5 @@ const suggestedDates = ref<CalendarDate[]>([
 
 const entries = computed(() => eventStore.events)
 
-const entry = entries.value.find(entry => entry.id === route.params.id)
+const entry = computed(() => entries.value.find(entry => entry.id === route.params.id))
 </script>
