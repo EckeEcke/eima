@@ -1,5 +1,6 @@
 <template>
   <UContainer v-if="entry">
+    <h2 class="text-2xl font-semibold mb-8">{{ entry.title }}</h2>
     <div class="flex flex-row flex-wrap gap-16 mb-8">
       <div class="w-full sm:w-auto">
         <DetailPageCard
@@ -7,7 +8,7 @@
             :eventObject="entry"
         />
       </div>
-      <div class="w-full sm:w-auto">
+      <div v-if="!entry.hasHappened" class="w-full sm:w-auto">
         <h2 class="text-lg font-semibold mb-4">
           Bereits vorgeschlagene Termine
         </h2>
